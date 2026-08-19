@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#8173A8">
+<title>A Little Something For You ♡</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: Georgia, serif;
+}
+
+:root {
+  --base: #F4F1FA;
+  --secondary: #DCE8F0;
+  --accent: #8173A8;
+  --accent-light: #A99EC7;
+  --text: #403B52;
+  --soft-text: #706A80;
+  --white: #FFFFFF;
+  --border: rgba(129,115,168,.18);
+}
+
+.screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(255,255,255,.9) 0%,
+      rgba(255,255,255,.35) 27%,
+      transparent 60%
+    ),
+    linear-gradient(
+      150deg,
+      var(--secondary) 0%,
+      #E8E8F3 45%,
+      var(--base) 100%
+    );
+
+  color: var(--text);
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.glow-1 {
+  width: 320px;
+  height: 320px;
+  top: -120px;
+  left: -80px;
+  background: rgba(255,255,255,.75);
+}
+
+.glow-2 {
+  width: 350px;
+  height: 350px;
+  right: -100px;
+  bottom: -150px;
+  background: rgba(129,115,168,.15);
+}
+
+.glow-3 {
+  width: 230px;
+  height: 230px;
+  right: -130px;
+  top: 40%;
+  background: rgba(220,232,240,.5);
+}
+
+.sparkle {
+  position: absolute;
+  color: var(--accent);
+  opacity: .4;
+  pointer-events: none;
+  animation: floating 4s ease-in-out infinite;
+}
+
+.s1 {
+  top: 18%;
+  left: 20%;
+}
+
+.s2 {
+  top: 27%;
+  right: 18%;
+  font-size: 20px;
+  animation-delay: .8s;
+}
+
+.s3 {
+  bottom: 25%;
+  left: 15%;
+  font-size: 28px;
+  animation-delay: 1.5s;
+}
+
+.s4 {
+  bottom: 18%;
+  right: 23%;
+  animation-delay: 2s;
+}
+
+.s5 {
+  top: 65%;
+  left: 47%;
+  font-size: 10px;
+  animation-delay: 2.7s;
+}
+
+@keyframes floating {
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: min(500px,80vw);
+  text-align: center;
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.tiny {
+  font-family: Arial,sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(50px,9vw,90px);
+  font-weight: normal;
+  letter-spacing: 4px;
+}
+
+.line {
+  width: 45px;
+  height: 2px;
+  margin: 22px auto;
+  background: var(--accent);
+  border-radius: 10px;
+  opacity: .7;
+}
+
+.hint {
+  margin: 0;
+  font-family: Arial,sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--soft-text);
+  animation: breathe 2.5s infinite ease-in-out;
+}
+
+@keyframes breathe {
+  0%,100% {
+    opacity: .45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: min(420px,72vw);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .8s ease;
+}
+
+.loading.show {
+  opacity: 1;
+}
+
+.loading-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-family: Arial,sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--text);
+}
+
+#percent {
+  color: var(--accent);
+  min-width: 40px;
+  text-align: right;
+}
+
+.bar {
+  width: 100%;
+  height: 6px;
+  padding: 1px;
+  border-radius: 20px;
+  background: rgba(129,115,168,.18);
+  box-shadow:
+    inset 0 1px 2px rgba(64,59,82,.08),
+    0 4px 15px rgba(64,59,82,.05);
+  overflow: hidden;
+}
+
+.progress {
+  width: 0%;
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg,#9C90BF,#8173A8);
+  box-shadow: 0 0 8px rgba(129,115,168,.35);
+}
+
+.loading-small {
+  margin-top: 14px;
+  text-align: center;
+  font-family: Arial,sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--soft-text);
+}
+
+.loading.finish {
+  animation: softBounceOut 1.25s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+@keyframes softBounceOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+    filter: blur(0);
+  }
+
+  25% {
+    opacity: 1;
+    transform: translate(-50%,-54%) scale(1.025);
+  }
+
+  50% {
+    opacity: .95;
+    transform: translate(-50%,-47%) scale(.99);
+  }
+
+  70% {
+    opacity: .65;
+    transform: translate(-50%,-51%) scale(1.01);
+    filter: blur(1px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(.94);
+    filter: blur(5px);
+  }
+}
+
+.game {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .9s ease,visibility .9s ease;
+}
+
+.game.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.menu {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  transition: opacity .6s ease,transform .6s ease;
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 38px;
+}
+
+.eyebrow {
+  font-family: Arial,sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--accent);
+  margin-bottom: 15px;
+}
+
+.menu-header h2 {
+  margin: 0;
+  font-size: clamp(40px,7vw,65px);
+  font-weight: normal;
+  letter-spacing: 2px;
+}
+
+.menu-header p {
+  margin: 13px 0 0;
+  font-family: Arial,sans-serif;
+  font-size: 11px;
+  line-height: 1.8;
+  letter-spacing: 1px;
+  color: var(--soft-text);
+}
+
+.sessions {
+  width: min(520px,90vw);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.session-card {
+  width: 100%;
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 17px 20px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255,255,255,.42);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(64,59,82,.05);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform .35s ease,background .35s ease,box-shadow .35s ease;
+}
+
+.session-card:not(.locked):hover {
+  transform: translateY(-3px) scale(1.01);
+  background: rgba(255,255,255,.65);
+  box-shadow: 0 14px 35px rgba(64,59,82,.09);
+}
+
+.session-card:not(.locked):active {
+  transform: scale(.985);
+}
+
+.session-number {
+  width: 42px;
+  font-family: Arial,sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--accent);
+}
+
+.session-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.session-title {
+  font-size: 18px;
+  letter-spacing: .5px;
+}
+
+.session-subtitle {
+  font-family: Arial,sans-serif;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--soft-text);
+}
+
+.arrow {
+  font-size: 20px;
+  color: var(--accent);
+  transition: transform .3s ease;
+}
+
+.session-card:hover .arrow {
+  transform: translateX(5px);
+}
+
+.session-card.locked {
+  opacity: .48;
+  cursor: not-allowed;
+  background: rgba(255,255,255,.24);
+}
+
+.lock {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--soft-text);
+  background: rgba(129,115,168,.08);
+}
+
+.unlocking {
+  animation: unlockBounce .8s ease;
+}
+
+@keyframes unlockBounce {
+  0% { transform: scale(.96); }
+  50% { transform: scale(1.025); }
+  75% { transform: scale(.99); }
+  100% { transform: scale(1); }
+}
+
+.menu-footer {
+  margin-top: 28px;
+  font-family: Arial,sans-serif;
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: var(--soft-text);
+  opacity: .65;
+}
+
+.session-page {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity .65s ease,transform .65s ease,visibility .65s ease;
+}
+
+.session-page.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.session-top {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 30px;
+  font-family: Arial,sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--soft-text);
+  background: linear-gradient(to bottom,rgba(244,241,250,.9),rgba(244,241,250,0));
+}
+
+.letter-content {
+  width: min(720px,86vw);
+  margin: 10vh auto 0;
+  padding-bottom: 25vh;
+}
+
+.chapter {
+  margin-bottom: 20px;
+  font-family: Arial,sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--accent);
+}
+
+.letter-content h2 {
+  margin: 0;
+  font-size: clamp(32px,6vw,58px);
+  font-weight: normal;
+  line-height: 1.1;
+}
+
+.session-line {
+  width: 42px;
+  height: 2px;
+  margin: 30px 0 55px;
+  background: var(--accent);
+  opacity: .65;
+}
+
+.letter-text {
+  width: min(610px,100%);
+  margin: auto;
+}
+
+.letter-text p {
+  margin: 0 0 32px;
+  font-size: 16px;
+  line-height: 2;
+  color: var(--soft-text);
+}
+
+.letter-text strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.letter-text em {
+  color: var(--text);
+}
+
+.letter-text .japanese {
+  font-family: "Noto Serif JP","Yu Mincho",Georgia,serif;
+  font-size: 15px;
+  line-height: 2.25;
+  padding-left: 20px;
+  border-left: 1px solid rgba(129,115,168,.3);
+}
+
+.signature-intro {
+  margin-top: 70px !important;
+}
+
+.signature {
+  font-size: 17px !important;
+  color: var(--text) !important;
+}
+
+.date {
+  margin-top: 35px !important;
+  font-family: Arial,sans-serif;
+  font-size: 9px !important;
+  letter-spacing: 3px;
+  text-align: right;
+}
+
+.letter-end {
+  width: min(610px,82vw);
+  margin: 0 auto 30vh;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity .8s ease,transform .8s ease;
+}
+
+.letter-end.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.end-line {
+  width: 35px;
+  height: 1px;
+  margin: 0 auto 18px;
+  background: var(--accent);
+  opacity: .5;
+}
+
+.letter-end span {
+  font-family: Arial,sans-serif;
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: var(--soft-text);
+  opacity: .7;
+}
+
+.session-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 35px;
+  background: linear-gradient(to top,rgba(244,241,250,.94),rgba(244,241,250,0));
+  transition: opacity .6s ease,transform .6s ease;
+}
+
+.hidden-nav {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+
+.hidden-nav.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.nav-button {
+  border: none;
+  background: transparent;
+  padding: 10px;
+  font-family: Arial,sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--soft-text);
+  cursor: pointer;
+  transition: color .3s ease,transform .3s ease;
+}
+
+.nav-button span {
+  color: var(--accent);
+  font-size: 15px;
+  margin: 0 5px;
+}
+
+.nav-button:hover {
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.next {
+  color: var(--accent);
+}
+
+.image-content {
+  width: min(850px,88vw);
+  margin: 10vh auto 0;
+  padding-bottom: 25vh;
+}
+
+.image-content h2 {
+  margin: 0;
+  font-size: clamp(40px,7vw,65px);
+  font-weight: normal;
+}
+
+.image-description {
+  font-family: Arial,sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--soft-text);
+}
+
+.photo-grid {
+  margin-top: 55px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 18px;
+}
+
+.photo-card {
+  min-height: 250px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(145deg,rgba(220,232,240,.7),rgba(129,115,168,.12));
+  box-shadow: 0 15px 40px rgba(64,59,82,.08);
+}
+
+.photo-card.large {
+  grid-row: span 2;
+  min-height: 520px;
+}
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .8s ease;
+}
+
+.photo-card:hover img {
+  transform: scale(1.04);
+}
+
+.photo-card span {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  font-family: Arial,sans-serif;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+
+.image-ending {
+  margin-top: 55px;
+  text-align: center;
+  font-family: Arial,sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--soft-text);
+}
+
+.secret-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.secret-content {
+  width: min(580px,82vw);
+}
+
+.secret-symbol {
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: var(--accent);
+  animation: secretFloat 3s ease-in-out infinite;
+}
+
+@keyframes secretFloat {
+  0%,100% {
+    transform: translateY(0);
+    opacity: .6;
+  }
+
+  50% {
+    transform: translateY(-7px);
+    opacity: 1;
+  }
+}
+
+.secret-content h2 {
+  margin: 0;
+  font-size: clamp(35px,6vw,55px);
+  font-weight: normal;
+}
+
+.scan-text {
+  margin: 18px 0 30px;
+  font-family: Arial,sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--soft-text);
+  opacity: .85;
+}
+
+.qr-wrapper {
+  width: min(260px,65vw);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,.65);
+  border: 1px solid rgba(129,115,168,.18);
+  border-radius: 20px;
+  box-shadow: 0 18px 45px rgba(64,59,82,.08);
+  backdrop-filter: blur(12px);
+  animation: qrAppear .8s cubic-bezier(.22,.61,.36,1) both;
+}
+
+.qr-code {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+@keyframes qrAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(.94);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.015);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.leave-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(244,241,250,.32);
+  backdrop-filter: blur(0);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .5s ease,backdrop-filter .7s ease,visibility .5s ease;
+}
+
+.leave-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  backdrop-filter: blur(13px);
+}
+
+.leave-message {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px) scale(.95);
+  transition: opacity .5s ease,transform .6s cubic-bezier(.22,.61,.36,1);
+}
+
+.leave-overlay.show .leave-message {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.leave-symbol {
+  width: 45px;
+  height: 45px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,.5);
+  color: var(--accent);
+  font-size: 20px;
+}
+
+.leave-message h2 {
+  margin: 0;
+  font-size: 38px;
+  font-weight: normal;
+}
+
+.leave-message p {
+  margin: 8px 0 28px;
+  font-family: Arial,sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--soft-text);
+}
+
+.leave-options {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+.leave-options button {
+  border: none;
+  border-bottom: 1px solid rgba(129,115,168,.35);
+  padding: 6px 0;
+  background: transparent;
+  font-family: Arial,sans-serif;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  cursor: pointer;
+  transition: color .3s ease,transform .3s ease;
+}
+
+.leave-options button:hover {
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+@media (max-width:600px) {
+  .menu-header {
+    margin-bottom: 28px;
+  }
+
+  .session-card {
+    min-height: 74px;
+  }
+
+  .session-title {
+    font-size: 15px;
+  }
+
+  .session-subtitle {
+    font-size: 8px;
+  }
+
+  .letter-content {
+    width: 84vw;
+    margin-top: 9vh;
+  }
+
+  .letter-content h2 {
+    font-size: 35px;
+  }
+
+  .letter-text p {
+    font-size: 15px;
+    line-height: 1.95;
+    margin-bottom: 29px;
+  }
+
+  .letter-text .japanese {
+    font-size: 14px;
+    padding-left: 14px;
+    line-height: 2.1;
+  }
+
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-card.large {
+    grid-row: auto;
+    min-height: 400px;
+  }
+
+  .session-bottom {
+    padding: 20px;
+  }
+
+  .leave-options {
+    gap: 18px;
+  }
+
+  .qr-wrapper {
+    width: min(230px,62vw);
+  }
+
+  .scan-text {
+    margin-bottom: 25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="screen" id="screen">
+
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+<div class="glow glow-3"></div>
+
+<div class="sparkle s1">✦</div>
+<div class="sparkle s2">✧</div>
+<div class="sparkle s3">·</div>
+<div class="sparkle s4">✦</div>
+<div class="sparkle s5">·</div>
+
+<div class="content" id="content">
+  <div class="tiny">A LITTLE SOMETHING FOR YOU</div>
+  <h1>Welcome</h1>
+  <div class="line"></div>
+  <p class="hint">tap anywhere to begin</p>
+</div>
+
+<div class="loading" id="loading">
+  <div class="loading-header">
+    <span>LOADING</span>
+    <span id="percent">0%</span>
+  </div>
+
+  <div class="bar">
+    <div class="progress" id="progress"></div>
+  </div>
+
+  <div class="loading-small">
+    preparing something special...
+  </div>
+</div>
+
+<main class="game" id="game">
+
+<section class="menu" id="menu">
+
+<div class="menu-header">
+  <div class="eyebrow">A LITTLE SOMETHING FOR YOU</div>
+  <h2>Choose one.</h2>
+  <p>
+    take your time,<br>
+    there's something waiting inside.
+  </p>
+</div>
+
+<div class="sessions">
+
+<button class="session-card" id="letterButton">
+  <span class="session-number">01</span>
+
+  <span class="session-info">
+    <span class="session-title">Letter for you</span>
+    <span class="session-subtitle">words I wanted you to read</span>
+  </span>
+
+  <span class="arrow">→</span>
+</button>
+
+<button class="session-card locked" id="memoriesButton" disabled>
+  <span class="session-number">02</span>
+
+  <span class="session-info">
+    <span class="session-title">Memories</span>
+    <span class="session-subtitle">little moments worth keeping</span>
+  </span>
+
+  <span class="lock">♢</span>
+</button>
+
+<button class="session-card locked" id="somethingButton" disabled>
+  <span class="session-number">03</span>
+
+  <span class="session-info">
+    <span class="session-title">Somethinggg~ :3</span>
+    <span class="session-subtitle">something you weren't supposed to see</span>
+  </span>
+
+  <span class="lock">♢</span>
+</button>
+
+</div>
+
+<div class="menu-footer">
+  choose one to continue
+</div>
+
+</section>
+
+<section class="session-page" id="letterSession">
+
+<div class="session-top">
+  <span>01</span>
+  <span>LETTER FOR YOU</span>
+</div>
+
+<article class="letter-content">
+
+<div class="chapter">A LITTLE LETTER</div>
+
+<h2>Dear Wiss, My Boyfriend.</h2>
+
+<div class="session-line"></div>
+
+<div class="letter-text">
+
+<p>
+AAALOOOOO SAYANGKU CINTAAAA :3 Selamat Ulang Tahun, semoga panjang umur, sehat selalu AMIIN YANG KENCENG 😋😋. jadii aku berencana buat website ini jauuuuh bangett. bisa dibilang 30 hari sebelum kamu ultah, MAAF YAA SIMPLE BANGET 😓 aku belum pede buat yang mewah +++++ belum bisa jugaa.
+</p>
+
+<p>
+Tapi walaupun SEDERHANA CEUNAH, akuu harap kamu bisa ngerasain kalau di balik website kecil inii, ada seseorang yang bener bener beneeerrr banget meluangkan waktu dan pikiran untuk membuat sesuatu khusus buat kamu. Aku mungkin nggaa selalu pandai menyampaikan perasaanku lewat kata kata, kadang malah malu sendiri awokawokaowko, kadang bingung harus mulai dari mana, dan ujung ujungnya cuma bisa bilang hal hal sederhana... SEDERHANA CEUNAH. Tapi kali ini, aku mw coba menuliskan semuanya untukmu.
+</p>
+
+<p>
+Kiw sayangku cintaa my honey bunny sweetie prikitiew, aku mau kamu tauu satu hal yang mungkin harus kamu dengar berkali kali.. <strong>“I choose you not because you have to be perfect.”</strong> Aku pilih kamu karnaaa KAMU YA KAMU. Dengan segala kelebihanmu, kekuranganmu, sifatmu yang kadang bikin aku BINGUUUUNG, tingkahmu yang kadang bikin mengangah kek orgil, bahkan bagian bagian dari dirimu yang mungkin justru kamu sendiri kurang suka.
+</p>
+
+<p>
+Aku nggaa pernah butuh kamu untuk menjadi versi lain dari dirimu supaya aku bisa sayang sama kamu. Kamu ngga perlu berubah menjadi lebih good looking, lebih hebat, lebih sempurna, atau menjadi seperti siapa pun hanya supaya pantas dicintai. Hear me out yaa mas mprit prit kuu, kamu yang sekarang sudah cukup untuk menjadi seseorang yang ingin aku pilih.
+</p>
+
+<p>
+Jadi kalau suatu hari kamu melihat dirimu sendiri dan berpikir, <em>"Aku kurang ini, aku kurang itu..."</em>, semoga kamu ingat kalau ada aku yang melihatmu dengan cara yang berbeda. Aku mungkin gabisa menghapus semua rasa insecure yang kmu punyaaa, tapi AT LEAST aku mw bangett menjadi seseorang yang selalu ingatkanmu kalaww kamu tetap berharga.
+</p>
+
+<p>
+Aku suka caramu menjadi dirimu sendiri. Aku suka hal-hal kecil tentangmu yang mungkin menurutmu nggak istimewa. Cara kamu berbicara, cara kamu bercanda, cara kamu merespons sesuatu, bahkan hal hal random yang cuma kamu lakukan. Mungkin bagimu itu biasa aja, tapi bagiku justru hal hal kecil begitu yang membuatmu menjadi <strong>Wiss yang aku kenal dan aku sayang.</strong>
+</p>
+
+<p>
+Dann kalau kamu bertanya, <em>"Kenapa aku?"</em>, mungkin aku ngga akan pernah punya satu jawaban yang benar benar cukup untuk jelasin. Because my feelings for you aren’t a list of reasons that can be counted one by one. I don’t love you because of one particular thing, but because of everything that makes you who you are. And the more I get to know you, the more reasons I find to keep choosing you.
+</p>
+
+<p>
+Kalau nanti kamu berubah, aku ingin mengenal versi barumu. Kalau kamu lagi engga baik baik ajaa, I still wanna be with you.
+</p>
+
+<p>
+Aku gaa menjanjikan kalau aku akan selalu menjadi pacar yang sempurna, karna yaa aku sendiri tau aku jauh dari sempurna. Ak bisa salah, bisa ngambek, bisa keras kepala, bisa malu maluin, bisa tiba tiba random, dan mungkin kadang bikin kamu bingung awoakwoakwoka keren bet guwa aseli. TAPIIII satu hal yang ingin aku usahakan ituu <strong>“I may not always be the best at showing my love, but I’ll always do my best to love you sincerely, faithfully, and with all my heart. Because out of all the choices in the world, I’d still choose you.”</strong>
+</p>
+
+<p>
+Maka, wahai Tuan Wiss tercinta yang sedang bertambah usia, izinkan seorang gadis bobrok ini yang kadang suka tantrum gajelas ini menyampaikan sesuatu yang sangat serius... 😭
+</p>
+
+<p>
+Semoga di usia barumu, langkahmu selalu dipertemukan dengan hal hal baik. Semoga apa pun yang sedang kamu perjuangkan perlahan menemukan jalannya. Semoga kamu punya banyak alasan untuk tersenyum, banyak hal yang membuatmu bangga pada dirimu sendiri, dan banyak momen yang nantinya bisa kamu kenang dengan bahagia.
+</p>
+
+<p>
+(Dan kalau aku boleh sedikit egois?)
+</p>
+
+<p>
+Aku berharap aku masih boleh menjadi bagian dari cerita cerita itu.
+</p>
+
+<p>
+Bukan karna aku mau menjadi seseorang yang harus selalu ada di setiap langkahmu, tapi karna aku senang bisa mengenalmu. Senang bisa mendengar cerita-ceritamu. Senang bisa bercanda denganmu. Senang bisa menjadi orang yang kamu panggil ketika kamu ingin bercerita. Dan senang karna, dari sekian banyak orang di dunia ini, entah gimana aku bisa bertemu dengan <strong>kamu.</strong>
+</p>
+
+<p>
+Jadi, jangan terlalu keras pada dirimu sendiri yaaa sayangg?
+</p>
+
+<p class="japanese">
+もし世界が君に「自分は十分じゃない」と思わせるような日があったら、君を大切に想っている人たちのもとへ、少しだけ帰ってきてね。
+</p>
+
+<p class="japanese">
+そして、もしある日、自分がどれほど大切な存在なのかを忘れてしまったら、この小さな手紙が、君のことを知り、君のすべてを見つめ、欠けているところも、素敵なところも含めて受け入れた誰かがいたことを思い出させてくれますように。
+</p>
+
+<p>
+そして、その人は今もこう言うでしょう.
+<br>
+<strong>"I still choose you."</strong>
+</p>
+
+<p>
+Bukan karna kamu sempurna.
+</p>
+
+<p>
+Bukan karna kamu harus menjadi seseorang yang lain.
+</p>
+
+<p>
+Tapi karna <strong>kamu adalah kamu.</strong>
+</p>
+
+<p>
+Dan entah kenapa, dari sekian banyak kemungkinan yang bisa terjadi, aku bersyukur salah satunya aku bisa mengenal, menyayangi, dan memanggilmu <strong>sayang.</strong>
+</p>
+
+<p>
+Happy birthday, Wiss. 🤍
+</p>
+
+<p>
+TETAP JADI DIRI SENDIRI YAA, jangan merasa harus kaloo mw dicintai tuh harus sempurna duluu. Karena setidaknya, di sini, kmu engga perlu menjadi siapa siapa selain dirimu sendiri.
+</p>
+
+<p>
+Mw kamu jungkir balik tengah jalan juga...
+<strong>AKU IKUTAN AWOKAOWKOWKKAOKW.</strong>
+<br>
+p, info ngudud 😏
+</p>
+
+<p class="signature-intro">
+Dengan segala hormat, kasih sayang, dan sedikit rasa malu yang tidak dapat dipertanggungjawabkan,
+</p>
+
+<p class="signature">
+<strong>
+Dari : Zetta, your ONLY GIRLFRIEND! hmph. ( ｡ •̀ ⤙ •́ ｡ )
+</strong>
+</p>
+
+<p class="date">
+<em>22 September 2026</em>
+</p>
+
+</div>
+</article>
+
+<div class="letter-end" id="letterEnd">
+  <div class="end-line"></div>
+  <span>you reached the end.</span>
+</div>
+
+<div class="session-bottom hidden-nav" id="letterNav">
+
+<button class="nav-button leave" id="letterLeave">
+  <span>←</span> LEAVE
+</button>
+
+<button class="nav-button next" id="letterNext">
+  NEXT <span>→</span>
+</button>
+
+</div>
+
+</section>
+
+<section class="session-page" id="memoriesSession">
+
+<div class="session-top">
+  <span>02</span>
+  <span>MEMORIES</span>
+</div>
+
+<div class="image-content">
+
+<div class="chapter">LITTLE MEMORIES</div>
+
+<h2>Memories.</h2>
+
+<p class="image-description">
+some moments deserve to be kept.
+</p>
+
+<div class="photo-grid">
+
+<div class="photo-card large">
+<img src="image1.jpg" alt="memory 01">
+<span>little memory · 01</span>
+</div>
+
+<div class="photo-card">
+<img src="image2.jpg" alt="memory 02">
+<span>little memory · 02</span>
+</div>
+
+<div class="photo-card">
+<img src="image3.jpg" alt="memory 03">
+<span>little memory · 03</span>
+</div>
+
+</div>
+
+<p class="image-ending">
+and maybe there will be more memories
+waiting for us.
+</p>
+
+</div>
+
+<div class="session-bottom">
+
+<button class="nav-button leave" id="memoryLeave">
+  <span>←</span> LEAVE
+</button>
+
+<button class="nav-button next" id="memoryNext">
+  NEXT <span>→</span>
+</button>
+
+</div>
+
+</section>
+
+<section class="session-page secret-page" id="somethingSession">
+
+<div class="secret-content">
+
+<div class="secret-symbol">✦</div>
+
+<div class="chapter">03</div>
+
+<div class="eyebrow">YOU FOUND IT</div>
+
+<h2>Somethinggg~ :3</h2>
+
+<p class="scan-text">
+di scan ya sayangg 😘
+</p>
+
+<div class="qr-wrapper">
+<img src="qrcode.png" alt="QR Code" class="qr-code">
+</div>
+
+</div>
+
+<div class="session-bottom">
+
+<button class="nav-button leave" id="somethingLeave">
+  <span>←</span> LEAVE
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+<div class="leave-overlay" id="leaveOverlay">
+
+<div class="leave-message">
+
+<div class="leave-symbol">?</div>
+
+<h2>loh?</h2>
+
+<p>udahan nih?</p>
+
+<div class="leave-options">
+
+<button id="stayButton">
+ngga deh, lanjut aja
+</button>
+
+<button id="confirmLeave">
+iya
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const screen = document.getElementById("screen");
+const content = document.getElementById("content");
+const loading = document.getElementById("loading");
+const progress = document.getElementById("progress");
+const percent = document.getElementById("percent");
+const game = document.getElementById("game");
+const menu = document.getElementById("menu");
+
+const letterSession = document.getElementById("letterSession");
+const memoriesSession = document.getElementById("memoriesSession");
+const somethingSession = document.getElementById("somethingSession");
+
+const letterButton = document.getElementById("letterButton");
+const memoriesButton = document.getElementById("memoriesButton");
+const somethingButton = document.getElementById("somethingButton");
+
+const letterNav = document.getElementById("letterNav");
+const letterEnd = document.getElementById("letterEnd");
+const letterNext = document.getElementById("letterNext");
+const letterLeave = document.getElementById("letterLeave");
+
+const memoryNext = document.getElementById("memoryNext");
+const memoryLeave = document.getElementById("memoryLeave");
+const somethingLeave = document.getElementById("somethingLeave");
+
+const leaveOverlay = document.getElementById("leaveOverlay");
+const stayButton = document.getElementById("stayButton");
+const confirmLeave = document.getElementById("confirmLeave");
+
+const bgMusic = document.getElementById("bgMusic");
+
+let started = false;
+let letterFinished = false;
+
+screen.addEventListener("click", function(event) {
+
+  if (
+    started ||
+    event.target.closest("button") ||
+    event.target.closest(".session-page")
+  ) {
+    return;
+  }
+
+  started = true;
+
+  content.style.opacity = "0";
+  content.style.transform =
+    "translate(-50%, -55%) scale(.98)";
+
+  bgMusic.volume = 0.35;
+
+  bgMusic.play().catch(function() {
+    console.log("Browser menunggu interaksi pengguna.");
+  });
+
+  setTimeout(function() {
+    loading.classList.add("show");
+  },400);
+
+  let value = 0;
+
+  const interval = setInterval(function() {
+
+    value++;
+
+    progress.style.width = value + "%";
+    percent.textContent = value + "%";
+
+    if(value >= 100) {
+
+      clearInterval(interval);
+
+      percent.textContent = "100%";
+
+      setTimeout(function() {
+        loading.classList.add("finish");
+      },350);
+
+      setTimeout(function() {
+
+        loading.style.display = "none";
+        game.classList.add("active");
+
+      },1600);
+    }
+
+  },35);
+
+});
+
+function openSession(session) {
+
+  menu.style.opacity = "0";
+  menu.style.transform = "translateY(-10px)";
+  menu.style.pointerEvents = "none";
+
+  letterSession.classList.remove("active");
+  memoriesSession.classList.remove("active");
+  somethingSession.classList.remove("active");
+
+  session.classList.add("active");
+
+  session.scrollTop = 0;
+}
+
+function returnToMenu() {
+
+  letterSession.classList.remove("active");
+  memoriesSession.classList.remove("active");
+  somethingSession.classList.remove("active");
+
+  letterNav.classList.remove("show");
+  letterEnd.classList.remove("show");
+
+  letterFinished = false;
+
+  menu.style.opacity = "1";
+  menu.style.transform = "translateY(0)";
+  menu.style.pointerEvents = "auto";
+}
+
+letterButton.addEventListener("click",function() {
+  openSession(letterSession);
+});
+
+letterSession.addEventListener("scroll",function() {
+
+  if(letterFinished) {
+    return;
+  }
+
+  const scrollPosition =
+    letterSession.scrollTop +
+    letterSession.clientHeight;
+
+  const scrollHeight =
+    letterSession.scrollHeight;
+
+  if(scrollPosition >= scrollHeight - 100) {
+
+    letterFinished = true;
+
+    letterEnd.classList.add("show");
+
+    setTimeout(function() {
+      letterNav.classList.add("show");
+    },450);
+  }
+
+});
+
+letterNext.addEventListener("click",function() {
+
+  memoriesButton.disabled = false;
+
+  memoriesButton.classList.remove("locked");
+
+  memoriesButton.querySelector(".lock").textContent = "→";
+
+  memoriesButton.classList.add("unlocking");
+
+  setTimeout(function() {
+    openSession(memoriesSession);
+  },250);
+
+});
+
+memoriesButton.addEventListener("click",function() {
+
+  if(memoriesButton.disabled) {
+    return;
+  }
+
+  openSession(memoriesSession);
+
+});
+
+memoryNext.addEventListener("click",function() {
+
+  somethingButton.disabled = false;
+
+  somethingButton.classList.remove("locked");
+
+  somethingButton.querySelector(".lock").textContent = "→";
+
+  somethingButton.classList.add("unlocking");
+
+  setTimeout(function() {
+    openSession(somethingSession);
+  },250);
+
+});
+
+somethingButton.addEventListener("click",function() {
+
+  if(somethingButton.disabled) {
+    return;
+  }
+
+  openSession(somethingSession);
+
+});
+
+function showLeavePopup() {
+  leaveOverlay.classList.add("show");
+}
+
+letterLeave.addEventListener("click",showLeavePopup);
+memoryLeave.addEventListener("click",showLeavePopup);
+somethingLeave.addEventListener("click",showLeavePopup);
+
+stayButton.addEventListener("click",function() {
+  leaveOverlay.classList.remove("show");
+});
+
+confirmLeave.addEventListener("click",function() {
+
+  leaveOverlay.classList.remove("show");
+
+  setTimeout(function() {
+    returnToMenu();
+  },350);
+
+});
+</script>
+
+</body>
+</html>
