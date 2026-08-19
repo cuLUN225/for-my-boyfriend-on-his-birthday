@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#8173A8">
-<title>A Little Something For You ♡</title>
+<meta name="theme-color" content="#F4F1FA">
+<title>A Little Something For You</title>
 
 <style>
 * {
@@ -21,6 +21,8 @@ body {
 
 body {
   font-family: Georgia, serif;
+  background: #F4F1FA;
+  color: #403B52;
 }
 
 :root {
@@ -39,7 +41,6 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-
   background:
     radial-gradient(
       circle at 50% 35%,
@@ -53,8 +54,6 @@ body {
       #E8E8F3 45%,
       var(--base) 100%
     );
-
-  color: var(--text);
 }
 
 .glow {
@@ -242,6 +241,7 @@ h1 {
   border-radius: 20px;
   background: linear-gradient(90deg,#9C90BF,#8173A8);
   box-shadow: 0 0 8px rgba(129,115,168,.35);
+  transition: width .05s linear;
 }
 
 .loading-small {
@@ -364,7 +364,10 @@ h1 {
   box-shadow: 0 8px 30px rgba(64,59,82,.05);
   color: var(--text);
   cursor: pointer;
-  transition: transform .35s ease,background .35s ease,box-shadow .35s ease;
+  transition:
+    transform .35s ease,
+    background .35s ease,
+    box-shadow .35s ease;
 }
 
 .session-card:not(.locked):hover {
@@ -436,10 +439,21 @@ h1 {
 }
 
 @keyframes unlockBounce {
-  0% { transform: scale(.96); }
-  50% { transform: scale(1.025); }
-  75% { transform: scale(.99); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(.96);
+  }
+
+  50% {
+    transform: scale(1.025);
+  }
+
+  75% {
+    transform: scale(.99);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .menu-footer {
@@ -463,7 +477,10 @@ h1 {
   visibility: hidden;
   pointer-events: none;
   transform: translateY(20px);
-  transition: opacity .65s ease,transform .65s ease,visibility .65s ease;
+  transition:
+    opacity .65s ease,
+    transform .65s ease,
+    visibility .65s ease;
 }
 
 .session-page.active {
@@ -485,7 +502,11 @@ h1 {
   font-weight: 600;
   letter-spacing: 3px;
   color: var(--soft-text);
-  background: linear-gradient(to bottom,rgba(244,241,250,.9),rgba(244,241,250,0));
+  background: linear-gradient(
+    to bottom,
+    rgba(244,241,250,.9),
+    rgba(244,241,250,0)
+  );
 }
 
 .letter-content {
@@ -540,7 +561,11 @@ h1 {
 }
 
 .letter-text .japanese {
-  font-family: "Noto Serif JP","Yu Mincho",Georgia,serif;
+  font-family:
+    "Noto Serif JP",
+    "Yu Mincho",
+    Georgia,
+    serif;
   font-size: 15px;
   line-height: 2.25;
   padding-left: 20px;
@@ -603,7 +628,11 @@ h1 {
   display: flex;
   justify-content: space-between;
   padding: 25px 35px;
-  background: linear-gradient(to top,rgba(244,241,250,.94),rgba(244,241,250,0));
+  background: linear-gradient(
+    to top,
+    rgba(244,241,250,.94),
+    rgba(244,241,250,0)
+  );
   transition: opacity .6s ease,transform .6s ease;
 }
 
@@ -678,7 +707,11 @@ h1 {
   overflow: hidden;
   position: relative;
   border-radius: 20px;
-  background: linear-gradient(145deg,rgba(220,232,240,.7),rgba(129,115,168,.12));
+  background: linear-gradient(
+    145deg,
+    rgba(220,232,240,.7),
+    rgba(129,115,168,.12)
+  );
   box-shadow: 0 15px 40px rgba(64,59,82,.08);
 }
 
@@ -766,7 +799,7 @@ h1 {
 
 .qr-wrapper {
   width: min(260px,65vw);
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1/1;
   margin: 0 auto;
   padding: 14px;
   display: flex;
@@ -817,7 +850,10 @@ h1 {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity .5s ease,backdrop-filter .7s ease,visibility .5s ease;
+  transition:
+    opacity .5s ease,
+    backdrop-filter .7s ease,
+    visibility .5s ease;
 }
 
 .leave-overlay.show {
@@ -831,7 +867,9 @@ h1 {
   text-align: center;
   opacity: 0;
   transform: translateY(20px) scale(.95);
-  transition: opacity .5s ease,transform .6s cubic-bezier(.22,.61,.36,1);
+  transition:
+    opacity .5s ease,
+    transform .6s cubic-bezier(.22,.61,.36,1);
 }
 
 .leave-overlay.show .leave-message {
@@ -888,6 +926,178 @@ h1 {
 .leave-options button:hover {
   color: var(--text);
   transform: translateY(-2px);
+}
+
+.notification {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 200;
+  width: min(330px,calc(100vw - 35px));
+  padding: 20px 22px 20px 62px;
+  border: 1px solid rgba(129,115,168,.22);
+  border-radius: 18px;
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 18px 45px rgba(64,59,82,.14),
+    0 3px 12px rgba(129,115,168,.08);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(calc(100% + 50px));
+}
+
+.notification.show {
+  visibility: visible;
+  animation: notificationIn .8s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+.notification.hide {
+  visibility: visible;
+  animation: notificationOut .9s cubic-bezier(.55,.06,.68,.19) forwards;
+}
+
+@keyframes notificationIn {
+  0% {
+    opacity: 0;
+    transform: translateX(calc(100% + 50px)) scale(.96);
+  }
+
+  65% {
+    opacity: 1;
+    transform: translateX(-8px) scale(1.015);
+  }
+
+  82% {
+    transform: translateX(3px) scale(.995);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes notificationOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translateX(-8px) scale(1.01);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(calc(100% + 50px)) scale(.94);
+  }
+}
+
+.notification-star {
+  position: absolute;
+  left: 18px;
+  top: 17px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 22px;
+  transform-origin: center;
+}
+
+.notification.show .notification-star {
+  animation: cuteStar 1s cubic-bezier(.22,.61,.36,1);
+}
+
+@keyframes cuteStar {
+  0% {
+    transform: scale(.4) rotate(-100deg);
+    opacity: 0;
+  }
+
+  35% {
+    transform: scale(1.25) rotate(45deg);
+    opacity: 1;
+  }
+
+  55% {
+    transform: scale(.88) rotate(155deg);
+  }
+
+  72% {
+    transform: scale(1.08) rotate(185deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+.notification.star-loop .notification-star {
+  animation: starLoop 1s cubic-bezier(.22,.61,.36,1);
+}
+
+@keyframes starLoop {
+  0% {
+    transform: scale(1) rotate(180deg);
+  }
+
+  35% {
+    transform: scale(1.25) rotate(240deg);
+  }
+
+  65% {
+    transform: scale(.88) rotate(340deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+.notification-label {
+  font-family: Arial,sans-serif;
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  color: var(--accent);
+  margin-bottom: 7px;
+}
+
+.notification-text {
+  font-family: Georgia,serif;
+  font-size: 15px;
+  color: var(--text);
+  letter-spacing: .2px;
+}
+
+.notification-dot {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  animation: dotPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes dotPulse {
+  0%,100% {
+    opacity: .35;
+    transform: scale(.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
 @media (max-width:600px) {
@@ -952,6 +1162,12 @@ h1 {
   .scan-text {
     margin-bottom: 25px;
   }
+
+  .notification {
+    right: 15px;
+    bottom: 15px;
+    width: calc(100vw - 30px);
+  }
 }
 </style>
 </head>
@@ -960,374 +1176,397 @@ h1 {
 
 <div class="screen" id="screen">
 
-<div class="glow glow-1"></div>
-<div class="glow glow-2"></div>
-<div class="glow glow-3"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="glow glow-3"></div>
 
-<div class="sparkle s1">✦</div>
-<div class="sparkle s2">✧</div>
-<div class="sparkle s3">·</div>
-<div class="sparkle s4">✦</div>
-<div class="sparkle s5">·</div>
+  <div class="sparkle s1">✦</div>
+  <div class="sparkle s2">✧</div>
+  <div class="sparkle s3">·</div>
+  <div class="sparkle s4">✦</div>
+  <div class="sparkle s5">·</div>
 
-<div class="content" id="content">
-  <div class="tiny">A LITTLE SOMETHING FOR YOU</div>
-  <h1>Welcome</h1>
-  <div class="line"></div>
-  <p class="hint">tap anywhere to begin</p>
-</div>
-
-<div class="loading" id="loading">
-  <div class="loading-header">
-    <span>LOADING</span>
-    <span id="percent">0%</span>
+  <div class="content" id="content">
+    <div class="tiny">A LITTLE SOMETHING FOR YOU</div>
+    <h1>Welcome</h1>
+    <div class="line"></div>
+    <p class="hint">tap anywhere to begin</p>
   </div>
 
-  <div class="bar">
-    <div class="progress" id="progress"></div>
+  <div class="loading" id="loading">
+    <div class="loading-header">
+      <span>LOADING</span>
+      <span id="percent">0%</span>
+    </div>
+
+    <div class="bar">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="loading-small">
+      preparing something special...
+    </div>
   </div>
 
-  <div class="loading-small">
-    preparing something special...
+  <main class="game" id="game">
+
+    <section class="menu" id="menu">
+
+      <div class="menu-header">
+        <div class="eyebrow">A LITTLE SOMETHING FOR YOU</div>
+
+        <h2>Choose one.</h2>
+
+        <p>
+          take your time,<br>
+          there's something waiting inside.
+        </p>
+      </div>
+
+      <div class="sessions">
+
+        <button class="session-card" id="letterButton">
+          <span class="session-number">01</span>
+
+          <span class="session-info">
+            <span class="session-title">Letter for you</span>
+            <span class="session-subtitle">
+              words I wanted you to read
+            </span>
+          </span>
+
+          <span class="arrow">→</span>
+        </button>
+
+        <button class="session-card locked" id="memoriesButton" disabled>
+          <span class="session-number">02</span>
+
+          <span class="session-info">
+            <span class="session-title">Memories</span>
+            <span class="session-subtitle">
+              little moments worth keeping
+            </span>
+          </span>
+
+          <span class="lock">♢</span>
+        </button>
+
+        <button class="session-card locked" id="somethingButton" disabled>
+          <span class="session-number">03</span>
+
+          <span class="session-info">
+            <span class="session-title">Somethinggg~ :3</span>
+            <span class="session-subtitle">
+              something you weren't supposed to see
+            </span>
+          </span>
+
+          <span class="lock">♢</span>
+        </button>
+
+      </div>
+
+      <div class="menu-footer">
+        choose one to continue
+      </div>
+
+    </section>
+
+    <section class="session-page" id="letterSession">
+
+      <div class="session-top">
+        <span>01</span>
+        <span>LETTER FOR YOU</span>
+      </div>
+
+      <article class="letter-content">
+
+        <div class="chapter">A LITTLE LETTER</div>
+
+        <h2>Dear Wiss, My Boyfriend.</h2>
+
+        <div class="session-line"></div>
+
+        <div class="letter-text">
+
+          <p>
+            AAALOOOOO SAYANGKU CINTAAAA :3 Selamat Ulang Tahun, semoga panjang umur, sehat selalu AMIIN YANG KENCENG 😋😋. jadii aku berencana buat website ini jauuuuh bangett. bisa dibilang 30 hari sebelum kamu ultah, MAAF YAA SIMPLE BANGET 😓 aku belum pede buat yang mewah +++++ belum bisa jugaa.
+          </p>
+
+          <p>
+            Tapi walaupun SEDERHANA CEUNAH, akuu harap kamu bisa ngerasain kalau di balik website kecil inii, ada seseorang yang bener bener beneeerrr banget meluangkan waktu dan pikiran untuk membuat sesuatu khusus buat kamu. Aku mungkin nggaa selalu pandai menyampaikan perasaanku lewat kata kata, kadang malah malu sendiri awokawokaowko, kadang bingung harus mulai dari mana, dan ujung ujungnya cuma bisa bilang hal hal sederhana... SEDERHANA CEUNAH. Tapi kali ini, aku mw coba menuliskan semuanya untukmu.
+          </p>
+
+          <p>
+            Kiw sayangku cintaa my honey bunny sweetie prikitiew, aku mau kamu tauu satu hal yang mungkin harus kamu dengar berkali kali.. <strong>“I choose you not because you have to be perfect.”</strong> Aku pilih kamu karnaaa KAMU YA KAMU. Dengan segala kelebihanmu, kekuranganmu, sifatmu yang kadang bikin aku BINGUUUUNG, tingkahmu yang kadang bikin mengangah kek orgil, bahkan bagian bagian dari dirimu yang mungkin justru kamu sendiri kurang suka.
+          </p>
+
+          <p>
+            Aku nggaa pernah butuh kamu untuk menjadi versi lain dari dirimu supaya aku bisa sayang sama kamu. Kamu ngga perlu berubah menjadi lebih good looking, lebih hebat, lebih sempurna, atau menjadi seperti siapa pun hanya supaya pantas dicintai. Hear me out yaa mas mprit prit kuu, kamu yang sekarang sudah cukup untuk menjadi seseorang yang ingin aku pilih.
+          </p>
+
+          <p>
+            Jadi kalau suatu hari kamu melihat dirimu sendiri dan berpikir, <em>"Aku kurang ini, aku kurang itu..."</em>, semoga kamu ingat kalau ada aku yang melihatmu dengan cara yang berbeda. Aku mungkin gabisa menghapus semua rasa insecure yang kmu punyaaa, tapi AT LEAST aku mw bangett menjadi seseorang yang selalu ingatkanmu kalaww kamu tetap berharga.
+          </p>
+
+          <p>
+            Aku suka caramu menjadi dirimu sendiri. Aku suka hal-hal kecil tentangmu yang mungkin menurutmu nggak istimewa. Cara kamu berbicara, cara kamu bercanda, cara kamu merespons sesuatu, bahkan hal hal random yang cuma kamu lakukan. Mungkin bagimu itu biasa aja, tapi bagiku justru hal hal kecil begitu yang membuatmu menjadi <strong>Wiss yang aku kenal dan aku sayang.</strong>
+          </p>
+
+          <p>
+            Dann kalau kamu bertanya, <em>"Kenapa aku?"</em>, mungkin aku ngga akan pernah punya satu jawaban yang benar benar cukup untuk jelasin. Because my feelings for you aren’t a list of reasons that can be counted one by one. I don’t love you because of one particular thing, but because of everything that makes you who you are. And the more I get to know you, the more reasons I find to keep choosing you.
+          </p>
+
+          <p>
+            Kalau nanti kamu berubah, aku ingin mengenal versi barumu. Kalau kamu lagi engga baik baik ajaa, I still wanna be with you.
+          </p>
+
+          <p>
+            Aku gaa menjanjikan kalau aku akan selalu menjadi pacar yang sempurna, karna yaa aku sendiri tau aku jauh dari sempurna. Ak bisa salah, bisa ngambek, bisa keras kepala, bisa malu maluin, bisa tiba tiba random, dan mungkin kadang bikin kamu bingung awoakwoakwoka keren bet guwa aseli. TAPIIII satu hal yang ingin aku usahakan ituu <strong>“I may not always be the best at showing my love, but I’ll always do my best to love you sincerely, faithfully, and with all my heart. Because out of all the choices in the world, I’d still choose you.”</strong>
+          </p>
+
+          <p>
+            Maka, wahai Tuan Wiss tercinta yang sedang bertambah usia, izinkan seorang gadis bobrok ini yang kadang suka tantrum gajelas ini menyampaikan sesuatu yang sangat serius... 😭
+          </p>
+
+          <p>
+            Semoga di usia barumu, langkahmu selalu dipertemukan dengan hal hal baik. Semoga apa pun yang sedang kamu perjuangkan perlahan menemukan jalannya. Semoga kamu punya banyak alasan untuk tersenyum, banyak hal yang membuatmu bangga pada dirimu sendiri, dan banyak momen yang nantinya bisa kamu kenang dengan bahagia.
+          </p>
+
+          <p>
+            (Dan kalau aku boleh sedikit egois?)
+          </p>
+
+          <p>
+            Aku berharap aku masih boleh menjadi bagian dari cerita cerita itu.
+          </p>
+
+          <p>
+            Bukan karna aku mau menjadi seseorang yang harus selalu ada di setiap langkahmu, tapi karna aku senang bisa mengenalmu. Senang bisa mendengar cerita-ceritamu. Senang bisa bercanda denganmu. Senang bisa menjadi orang yang kamu panggil ketika kamu ingin bercerita. Dan senang karna, dari sekian banyak orang di dunia ini, entah gimana aku bisa bertemu dengan <strong>kamu.</strong>
+          </p>
+
+          <p>
+            Jadi, jangan terlalu keras pada dirimu sendiri yaaa sayangg?
+          </p>
+
+          <p class="japanese">
+            もし世界が君に「自分は十分じゃない」と思わせるような日があったら、君を大切に想っている人たちのもとへ、少しだけ帰ってきてね。
+          </p>
+
+          <p class="japanese">
+            そして、もしある日、自分がどれほど大切な存在なのかを忘れてしまったら、この小さな手紙が、君のことを知り、君のすべてを見つめ、欠けているところも、素敵なところも含めて受け入れた誰かがいたことを思い出させてくれますように。
+          </p>
+
+          <p>
+            そして、その人は今もこう言うでしょう.
+            <br>
+            <strong>"I still choose you."</strong>
+          </p>
+
+          <p>Bukan karna kamu sempurna.</p>
+
+          <p>Bukan karna kamu harus menjadi seseorang yang lain.</p>
+
+          <p>
+            Tapi karna <strong>kamu adalah kamu.</strong>
+          </p>
+
+          <p>
+            Dan entah kenapa, dari sekian banyak kemungkinan yang bisa terjadi, aku bersyukur salah satunya aku bisa mengenal, menyayangi, dan memanggilmu <strong>sayang.</strong>
+          </p>
+
+          <p>Happy birthday, Wiss. 🤍</p>
+
+          <p>
+            TETAP JADI DIRI SENDIRI YAA, jangan merasa harus kaloo mw dicintai tuh harus sempurna duluu. Karena setidaknya, di sini, kmu engga perlu menjadi siapa siapa selain dirimu sendiri.
+          </p>
+
+          <p>
+            Mw kamu jungkir balik tengah jalan juga...
+            <strong>AKU IKUTAN AWOKAOWKOWKKAOKW.</strong>
+            <br>
+            p, info ngudud 😏
+          </p>
+
+          <p class="signature-intro">
+            Dengan segala hormat, kasih sayang, dan sedikit rasa malu yang tidak dapat dipertanggungjawabkan,
+          </p>
+
+          <p class="signature">
+            <strong>
+              Dari : Zetta, your ONLY GIRLFRIEND! hmph. ( ｡ •̀ ⤙ •́ ｡ )
+            </strong>
+          </p>
+
+          <p class="date">
+            <em>22 September 2026</em>
+          </p>
+
+        </div>
+      </article>
+
+      <div class="letter-end" id="letterEnd">
+        <div class="end-line"></div>
+        <span>you reached the end.</span>
+      </div>
+
+      <div class="session-bottom hidden-nav" id="letterNav">
+        <button class="nav-button leave" id="letterLeave">
+          <span>←</span>
+          LEAVE
+        </button>
+
+        <button class="nav-button next" id="letterNext">
+          NEXT
+          <span>→</span>
+        </button>
+      </div>
+
+    </section>
+
+    <section class="session-page" id="memoriesSession">
+
+      <div class="session-top">
+        <span>02</span>
+        <span>MEMORIES</span>
+      </div>
+
+      <div class="image-content">
+
+        <div class="chapter">LITTLE MEMORIES</div>
+
+        <h2>Memories.</h2>
+
+        <p class="image-description">
+          some moments deserve to be kept.
+        </p>
+
+        <div class="photo-grid">
+
+          <div class="photo-card large">
+            <img src="image1.jpg" alt="memory 01">
+            <span>little memory · 01</span>
+          </div>
+
+          <div class="photo-card">
+            <img src="image2.jpg" alt="memory 02">
+            <span>little memory · 02</span>
+          </div>
+
+          <div class="photo-card">
+            <img src="image3.jpg" alt="memory 03">
+            <span>little memory · 03</span>
+          </div>
+
+        </div>
+
+        <p class="image-ending">
+          and maybe there will be more memories
+          waiting for us.
+        </p>
+
+      </div>
+
+      <div class="session-bottom" id="memoryNav">
+
+        <button class="nav-button leave" id="memoryLeave">
+          <span>←</span>
+          LEAVE
+        </button>
+
+        <button class="nav-button next" id="memoryNext">
+          NEXT
+          <span>→</span>
+        </button>
+
+      </div>
+
+    </section>
+
+    <section class="session-page secret-page" id="somethingSession">
+
+      <div class="secret-content">
+
+        <div class="secret-symbol">✦</div>
+
+        <div class="chapter">03</div>
+
+        <div class="eyebrow">YOU FOUND IT</div>
+
+        <h2>Somethinggg~ :3</h2>
+
+        <p class="scan-text">
+          di scan ya sayangg 😘
+        </p>
+
+        <div class="qr-wrapper">
+          <img
+            src="qrcode.png"
+            alt="QR Code"
+            class="qr-code"
+          >
+        </div>
+
+      </div>
+
+      <div class="session-bottom">
+        <button class="nav-button leave" id="somethingLeave">
+          <span>←</span>
+          LEAVE
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <div class="leave-overlay" id="leaveOverlay">
+
+    <div class="leave-message">
+
+      <div class="leave-symbol">?</div>
+
+      <h2>loh?</h2>
+
+      <p>udahan nih?</p>
+
+      <div class="leave-options">
+
+        <button id="stayButton">
+          ngga deh, lanjut aja
+        </button>
+
+        <button id="confirmLeave">
+          iya
+        </button>
+
+      </div>
+
+    </div>
+
   </div>
-</div>
 
-<main class="game" id="game">
+  <div class="notification" id="notification">
 
-<section class="menu" id="menu">
+    <div class="notification-star">✦</div>
 
-<div class="menu-header">
-  <div class="eyebrow">A LITTLE SOMETHING FOR YOU</div>
-  <h2>Choose one.</h2>
-  <p>
-    take your time,<br>
-    there's something waiting inside.
-  </p>
-</div>
+    <div class="notification-dot"></div>
 
-<div class="sessions">
+    <div class="notification-label">
+      A LITTLE MESSAGE
+    </div>
 
-<button class="session-card" id="letterButton">
-  <span class="session-number">01</span>
+    <div class="notification-text">
+      Pssssst… look at meeee :3
+    </div>
 
-  <span class="session-info">
-    <span class="session-title">Letter for you</span>
-    <span class="session-subtitle">words I wanted you to read</span>
-  </span>
-
-  <span class="arrow">→</span>
-</button>
-
-<button class="session-card locked" id="memoriesButton" disabled>
-  <span class="session-number">02</span>
-
-  <span class="session-info">
-    <span class="session-title">Memories</span>
-    <span class="session-subtitle">little moments worth keeping</span>
-  </span>
-
-  <span class="lock">♢</span>
-</button>
-
-<button class="session-card locked" id="somethingButton" disabled>
-  <span class="session-number">03</span>
-
-  <span class="session-info">
-    <span class="session-title">Somethinggg~ :3</span>
-    <span class="session-subtitle">something you weren't supposed to see</span>
-  </span>
-
-  <span class="lock">♢</span>
-</button>
+  </div>
 
 </div>
 
-<div class="menu-footer">
-  choose one to continue
-</div>
-
-</section>
-
-<section class="session-page" id="letterSession">
-
-<div class="session-top">
-  <span>01</span>
-  <span>LETTER FOR YOU</span>
-</div>
-
-<article class="letter-content">
-
-<div class="chapter">A LITTLE LETTER</div>
-
-<h2>Dear Wiss, My Boyfriend.</h2>
-
-<div class="session-line"></div>
-
-<div class="letter-text">
-
-<p>
-AAALOOOOO SAYANGKU CINTAAAA :3 Selamat Ulang Tahun, semoga panjang umur, sehat selalu AMIIN YANG KENCENG 😋😋. jadii aku berencana buat website ini jauuuuh bangett. bisa dibilang 30 hari sebelum kamu ultah, MAAF YAA SIMPLE BANGET 😓 aku belum pede buat yang mewah +++++ belum bisa jugaa.
-</p>
-
-<p>
-Tapi walaupun SEDERHANA CEUNAH, akuu harap kamu bisa ngerasain kalau di balik website kecil inii, ada seseorang yang bener bener beneeerrr banget meluangkan waktu dan pikiran untuk membuat sesuatu khusus buat kamu. Aku mungkin nggaa selalu pandai menyampaikan perasaanku lewat kata kata, kadang malah malu sendiri awokawokaowko, kadang bingung harus mulai dari mana, dan ujung ujungnya cuma bisa bilang hal hal sederhana... SEDERHANA CEUNAH. Tapi kali ini, aku mw coba menuliskan semuanya untukmu.
-</p>
-
-<p>
-Kiw sayangku cintaa my honey bunny sweetie prikitiew, aku mau kamu tauu satu hal yang mungkin harus kamu dengar berkali kali.. <strong>“I choose you not because you have to be perfect.”</strong> Aku pilih kamu karnaaa KAMU YA KAMU. Dengan segala kelebihanmu, kekuranganmu, sifatmu yang kadang bikin aku BINGUUUUNG, tingkahmu yang kadang bikin mengangah kek orgil, bahkan bagian bagian dari dirimu yang mungkin justru kamu sendiri kurang suka.
-</p>
-
-<p>
-Aku nggaa pernah butuh kamu untuk menjadi versi lain dari dirimu supaya aku bisa sayang sama kamu. Kamu ngga perlu berubah menjadi lebih good looking, lebih hebat, lebih sempurna, atau menjadi seperti siapa pun hanya supaya pantas dicintai. Hear me out yaa mas mprit prit kuu, kamu yang sekarang sudah cukup untuk menjadi seseorang yang ingin aku pilih.
-</p>
-
-<p>
-Jadi kalau suatu hari kamu melihat dirimu sendiri dan berpikir, <em>"Aku kurang ini, aku kurang itu..."</em>, semoga kamu ingat kalau ada aku yang melihatmu dengan cara yang berbeda. Aku mungkin gabisa menghapus semua rasa insecure yang kmu punyaaa, tapi AT LEAST aku mw bangett menjadi seseorang yang selalu ingatkanmu kalaww kamu tetap berharga.
-</p>
-
-<p>
-Aku suka caramu menjadi dirimu sendiri. Aku suka hal-hal kecil tentangmu yang mungkin menurutmu nggak istimewa. Cara kamu berbicara, cara kamu bercanda, cara kamu merespons sesuatu, bahkan hal hal random yang cuma kamu lakukan. Mungkin bagimu itu biasa aja, tapi bagiku justru hal hal kecil begitu yang membuatmu menjadi <strong>Wiss yang aku kenal dan aku sayang.</strong>
-</p>
-
-<p>
-Dann kalau kamu bertanya, <em>"Kenapa aku?"</em>, mungkin aku ngga akan pernah punya satu jawaban yang benar benar cukup untuk jelasin. Because my feelings for you aren’t a list of reasons that can be counted one by one. I don’t love you because of one particular thing, but because of everything that makes you who you are. And the more I get to know you, the more reasons I find to keep choosing you.
-</p>
-
-<p>
-Kalau nanti kamu berubah, aku ingin mengenal versi barumu. Kalau kamu lagi engga baik baik ajaa, I still wanna be with you.
-</p>
-
-<p>
-Aku gaa menjanjikan kalau aku akan selalu menjadi pacar yang sempurna, karna yaa aku sendiri tau aku jauh dari sempurna. Ak bisa salah, bisa ngambek, bisa keras kepala, bisa malu maluin, bisa tiba tiba random, dan mungkin kadang bikin kamu bingung awoakwoakwoka keren bet guwa aseli. TAPIIII satu hal yang ingin aku usahakan ituu <strong>“I may not always be the best at showing my love, but I’ll always do my best to love you sincerely, faithfully, and with all my heart. Because out of all the choices in the world, I’d still choose you.”</strong>
-</p>
-
-<p>
-Maka, wahai Tuan Wiss tercinta yang sedang bertambah usia, izinkan seorang gadis bobrok ini yang kadang suka tantrum gajelas ini menyampaikan sesuatu yang sangat serius... 😭
-</p>
-
-<p>
-Semoga di usia barumu, langkahmu selalu dipertemukan dengan hal hal baik. Semoga apa pun yang sedang kamu perjuangkan perlahan menemukan jalannya. Semoga kamu punya banyak alasan untuk tersenyum, banyak hal yang membuatmu bangga pada dirimu sendiri, dan banyak momen yang nantinya bisa kamu kenang dengan bahagia.
-</p>
-
-<p>
-(Dan kalau aku boleh sedikit egois?)
-</p>
-
-<p>
-Aku berharap aku masih boleh menjadi bagian dari cerita cerita itu.
-</p>
-
-<p>
-Bukan karna aku mau menjadi seseorang yang harus selalu ada di setiap langkahmu, tapi karna aku senang bisa mengenalmu. Senang bisa mendengar cerita-ceritamu. Senang bisa bercanda denganmu. Senang bisa menjadi orang yang kamu panggil ketika kamu ingin bercerita. Dan senang karna, dari sekian banyak orang di dunia ini, entah gimana aku bisa bertemu dengan <strong>kamu.</strong>
-</p>
-
-<p>
-Jadi, jangan terlalu keras pada dirimu sendiri yaaa sayangg?
-</p>
-
-<p class="japanese">
-もし世界が君に「自分は十分じゃない」と思わせるような日があったら、君を大切に想っている人たちのもとへ、少しだけ帰ってきてね。
-</p>
-
-<p class="japanese">
-そして、もしある日、自分がどれほど大切な存在なのかを忘れてしまったら、この小さな手紙が、君のことを知り、君のすべてを見つめ、欠けているところも、素敵なところも含めて受け入れた誰かがいたことを思い出させてくれますように。
-</p>
-
-<p>
-そして、その人は今もこう言うでしょう.
-<br>
-<strong>"I still choose you."</strong>
-</p>
-
-<p>
-Bukan karna kamu sempurna.
-</p>
-
-<p>
-Bukan karna kamu harus menjadi seseorang yang lain.
-</p>
-
-<p>
-Tapi karna <strong>kamu adalah kamu.</strong>
-</p>
-
-<p>
-Dan entah kenapa, dari sekian banyak kemungkinan yang bisa terjadi, aku bersyukur salah satunya aku bisa mengenal, menyayangi, dan memanggilmu <strong>sayang.</strong>
-</p>
-
-<p>
-Happy birthday, Wiss. 🤍
-</p>
-
-<p>
-TETAP JADI DIRI SENDIRI YAA, jangan merasa harus kaloo mw dicintai tuh harus sempurna duluu. Karena setidaknya, di sini, kmu engga perlu menjadi siapa siapa selain dirimu sendiri.
-</p>
-
-<p>
-Mw kamu jungkir balik tengah jalan juga...
-<strong>AKU IKUTAN AWOKAOWKOWKKAOKW.</strong>
-<br>
-p, info ngudud 😏
-</p>
-
-<p class="signature-intro">
-Dengan segala hormat, kasih sayang, dan sedikit rasa malu yang tidak dapat dipertanggungjawabkan,
-</p>
-
-<p class="signature">
-<strong>
-Dari : Zetta, your ONLY GIRLFRIEND! hmph. ( ｡ •̀ ⤙ •́ ｡ )
-</strong>
-</p>
-
-<p class="date">
-<em>22 September 2026</em>
-</p>
-
-</div>
-</article>
-
-<div class="letter-end" id="letterEnd">
-  <div class="end-line"></div>
-  <span>you reached the end.</span>
-</div>
-
-<div class="session-bottom hidden-nav" id="letterNav">
-
-<button class="nav-button leave" id="letterLeave">
-  <span>←</span> LEAVE
-</button>
-
-<button class="nav-button next" id="letterNext">
-  NEXT <span>→</span>
-</button>
-
-</div>
-
-</section>
-
-<section class="session-page" id="memoriesSession">
-
-<div class="session-top">
-  <span>02</span>
-  <span>MEMORIES</span>
-</div>
-
-<div class="image-content">
-
-<div class="chapter">LITTLE MEMORIES</div>
-
-<h2>Memories.</h2>
-
-<p class="image-description">
-some moments deserve to be kept.
-</p>
-
-<div class="photo-grid">
-
-<div class="photo-card large">
-<img src="image1.jpg" alt="memory 01">
-<span>little memory · 01</span>
-</div>
-
-<div class="photo-card">
-<img src="image2.jpg" alt="memory 02">
-<span>little memory · 02</span>
-</div>
-
-<div class="photo-card">
-<img src="image3.jpg" alt="memory 03">
-<span>little memory · 03</span>
-</div>
-
-</div>
-
-<p class="image-ending">
-and maybe there will be more memories
-waiting for us.
-</p>
-
-</div>
-
-<div class="session-bottom">
-
-<button class="nav-button leave" id="memoryLeave">
-  <span>←</span> LEAVE
-</button>
-
-<button class="nav-button next" id="memoryNext">
-  NEXT <span>→</span>
-</button>
-
-</div>
-
-</section>
-
-<section class="session-page secret-page" id="somethingSession">
-
-<div class="secret-content">
-
-<div class="secret-symbol">✦</div>
-
-<div class="chapter">03</div>
-
-<div class="eyebrow">YOU FOUND IT</div>
-
-<h2>Somethinggg~ :3</h2>
-
-<p class="scan-text">
-di scan ya sayangg 😘
-</p>
-
-<div class="qr-wrapper">
-<img src="qrcode.png" alt="QR Code" class="qr-code">
-</div>
-
-</div>
-
-<div class="session-bottom">
-
-<button class="nav-button leave" id="somethingLeave">
-  <span>←</span> LEAVE
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-<div class="leave-overlay" id="leaveOverlay">
-
-<div class="leave-message">
-
-<div class="leave-symbol">?</div>
-
-<h2>loh?</h2>
-
-<p>udahan nih?</p>
-
-<div class="leave-options">
-
-<button id="stayButton">
-ngga deh, lanjut aja
-</button>
-
-<button id="confirmLeave">
-iya
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<audio id="bgMusic" loop preload="auto">
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<audio id="music" src="music.mp3" loop preload="auto"></audio>
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
+<audio id="notificationSound" src="notification.mp3" preload="auto"></audio>
 
 <script>
 const screen = document.getElementById("screen");
@@ -1353,18 +1592,79 @@ const letterLeave = document.getElementById("letterLeave");
 
 const memoryNext = document.getElementById("memoryNext");
 const memoryLeave = document.getElementById("memoryLeave");
+
 const somethingLeave = document.getElementById("somethingLeave");
 
 const leaveOverlay = document.getElementById("leaveOverlay");
 const stayButton = document.getElementById("stayButton");
 const confirmLeave = document.getElementById("confirmLeave");
 
-const bgMusic = document.getElementById("bgMusic");
+const music = document.getElementById("music");
+const clickSound = document.getElementById("clickSound");
+const notificationSound = document.getElementById("notificationSound");
+
+const notification = document.getElementById("notification");
 
 let started = false;
 let letterFinished = false;
+let notificationTimer = null;
+let notificationLoop = null;
 
-screen.addEventListener("click", function(event) {
+function playClick() {
+  if (!clickSound) return;
+
+  clickSound.currentTime = 0;
+
+  clickSound.play().catch(() => {});
+}
+
+function startMusic() {
+  music.volume = 0.35;
+
+  music.play().catch(() => {});
+}
+
+function showNotification() {
+  clearTimeout(notificationTimer);
+
+  notification.classList.remove("hide");
+  notification.classList.remove("star-loop");
+
+  void notification.offsetWidth;
+
+  notification.classList.add("show");
+
+  notificationSound.currentTime = 0;
+  notificationSound.volume = 0.6;
+  notificationSound.play().catch(() => {});
+
+  notificationLoop = setInterval(() => {
+    if (
+      notification.classList.contains("show") &&
+      !notification.classList.contains("hide")
+    ) {
+      notification.classList.remove("star-loop");
+
+      void notification.offsetWidth;
+
+      notification.classList.add("star-loop");
+    }
+  },5000);
+
+  notificationTimer = setTimeout(() => {
+    clearInterval(notificationLoop);
+
+    notification.classList.remove("show");
+    notification.classList.add("hide");
+
+    setTimeout(() => {
+      notification.classList.remove("hide");
+    },1000);
+
+  },15000);
+}
+
+screen.addEventListener("click",(event) => {
 
   if (
     started ||
@@ -1376,42 +1676,39 @@ screen.addEventListener("click", function(event) {
 
   started = true;
 
+  startMusic();
+
   content.style.opacity = "0";
   content.style.transform =
-    "translate(-50%, -55%) scale(.98)";
+    "translate(-50%,-55%) scale(.98)";
 
-  bgMusic.volume = 0.35;
-
-  bgMusic.play().catch(function() {
-    console.log("Browser menunggu interaksi pengguna.");
-  });
-
-  setTimeout(function() {
+  setTimeout(() => {
     loading.classList.add("show");
   },400);
 
   let value = 0;
 
-  const interval = setInterval(function() {
+  const interval = setInterval(() => {
 
     value++;
 
     progress.style.width = value + "%";
     percent.textContent = value + "%";
 
-    if(value >= 100) {
+    if (value >= 100) {
 
       clearInterval(interval);
 
       percent.textContent = "100%";
 
-      setTimeout(function() {
+      setTimeout(() => {
         loading.classList.add("finish");
       },350);
 
-      setTimeout(function() {
+      setTimeout(() => {
 
         loading.style.display = "none";
+
         game.classList.add("active");
 
       },1600);
@@ -1423,9 +1720,15 @@ screen.addEventListener("click", function(event) {
 
 function openSession(session) {
 
+  playClick();
+
   menu.style.opacity = "0";
-  menu.style.transform = "translateY(-10px)";
-  menu.style.pointerEvents = "none";
+
+  menu.style.transform =
+    "translateY(-10px)";
+
+  menu.style.pointerEvents =
+    "none";
 
   letterSession.classList.remove("active");
   memoriesSession.classList.remove("active");
@@ -1448,17 +1751,23 @@ function returnToMenu() {
   letterFinished = false;
 
   menu.style.opacity = "1";
-  menu.style.transform = "translateY(0)";
-  menu.style.pointerEvents = "auto";
+
+  menu.style.transform =
+    "translateY(0)";
+
+  menu.style.pointerEvents =
+    "auto";
+
+  playClick();
 }
 
-letterButton.addEventListener("click",function() {
+letterButton.addEventListener("click",() => {
   openSession(letterSession);
 });
 
-letterSession.addEventListener("scroll",function() {
+letterSession.addEventListener("scroll",() => {
 
-  if(letterFinished) {
+  if (letterFinished) {
     return;
   }
 
@@ -1469,38 +1778,46 @@ letterSession.addEventListener("scroll",function() {
   const scrollHeight =
     letterSession.scrollHeight;
 
-  if(scrollPosition >= scrollHeight - 100) {
+  if (
+    scrollPosition >=
+    scrollHeight - 100
+  ) {
 
     letterFinished = true;
 
     letterEnd.classList.add("show");
 
-    setTimeout(function() {
+    setTimeout(() => {
       letterNav.classList.add("show");
     },450);
+
   }
 
 });
 
-letterNext.addEventListener("click",function() {
+letterNext.addEventListener("click",() => {
+
+  playClick();
 
   memoriesButton.disabled = false;
 
   memoriesButton.classList.remove("locked");
 
-  memoriesButton.querySelector(".lock").textContent = "→";
+  memoriesButton
+    .querySelector(".lock")
+    .textContent = "→";
 
   memoriesButton.classList.add("unlocking");
 
-  setTimeout(function() {
+  setTimeout(() => {
     openSession(memoriesSession);
   },250);
 
 });
 
-memoriesButton.addEventListener("click",function() {
+memoriesButton.addEventListener("click",() => {
 
-  if(memoriesButton.disabled) {
+  if (memoriesButton.disabled) {
     return;
   }
 
@@ -1508,53 +1825,92 @@ memoriesButton.addEventListener("click",function() {
 
 });
 
-memoryNext.addEventListener("click",function() {
+memoryNext.addEventListener("click",() => {
+
+  playClick();
 
   somethingButton.disabled = false;
 
   somethingButton.classList.remove("locked");
 
-  somethingButton.querySelector(".lock").textContent = "→";
+  somethingButton
+    .querySelector(".lock")
+    .textContent = "→";
 
   somethingButton.classList.add("unlocking");
 
-  setTimeout(function() {
+  setTimeout(() => {
     openSession(somethingSession);
+
+    setTimeout(() => {
+      showNotification();
+    },900);
+
   },250);
 
 });
 
-somethingButton.addEventListener("click",function() {
+somethingButton.addEventListener("click",() => {
 
-  if(somethingButton.disabled) {
+  if (somethingButton.disabled) {
     return;
   }
 
   openSession(somethingSession);
 
+  setTimeout(() => {
+    showNotification();
+  },900);
+
 });
 
 function showLeavePopup() {
+  playClick();
   leaveOverlay.classList.add("show");
 }
 
-letterLeave.addEventListener("click",showLeavePopup);
-memoryLeave.addEventListener("click",showLeavePopup);
-somethingLeave.addEventListener("click",showLeavePopup);
+letterLeave.addEventListener(
+  "click",
+  showLeavePopup
+);
 
-stayButton.addEventListener("click",function() {
+memoryLeave.addEventListener(
+  "click",
+  showLeavePopup
+);
+
+somethingLeave.addEventListener(
+  "click",
+  showLeavePopup
+);
+
+stayButton.addEventListener("click",() => {
+
+  playClick();
+
   leaveOverlay.classList.remove("show");
+
 });
 
-confirmLeave.addEventListener("click",function() {
+confirmLeave.addEventListener("click",() => {
+
+  playClick();
 
   leaveOverlay.classList.remove("show");
 
-  setTimeout(function() {
+  setTimeout(() => {
     returnToMenu();
   },350);
 
 });
+
+document.addEventListener("click",(event) => {
+
+  if (event.target.closest("button")) {
+    playClick();
+  }
+
+},true);
 </script>
 
 </body>
